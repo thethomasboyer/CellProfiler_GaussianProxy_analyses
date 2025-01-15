@@ -1,0 +1,27 @@
+[project]
+name = "cellprofiler-gaussianproxy-analyses"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.8,<3.10"
+dependencies = [
+    "cellprofiler>=4.2.8",
+    "jupyter>=1.1.1",
+    "pandas>=2.0.3",
+    "seaborn>=0.13.2",
+    "setuptools>=75.3.0",
+]
+
+[tool.pylint]
+MASTER.ignore = [".venv", ".ipynb_checkpoints"]
+
+[tool.pyright]
+exclude = [
+    ".venv",
+    ".ruff_cache",
+    "**/__pycache__",
+    "**/.local/share/uv/python",
+    "**/.vscode-server/extensions",
+    "**/.vscode/extensions",
+    ".ipynb_checkpoints",
+]
