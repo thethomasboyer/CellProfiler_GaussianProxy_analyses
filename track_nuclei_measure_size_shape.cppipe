@@ -2,7 +2,7 @@ CellProfiler Pipeline: http://www.cellprofiler.org
 Version:5
 DateRevision:428
 GitHash:
-ModuleCount:9
+ModuleCount:11
 HasImagePlaneDetails:False
 
 Images:[module_num:1|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:['To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
@@ -81,7 +81,7 @@ ColorToGray:[module_num:5|svn_version:'Unknown'|variable_revision_number:4|show_
 IdentifyPrimaryObjects:[module_num:6|svn_version:'Unknown'|variable_revision_number:15|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the input image:OrigRed
     Name the primary objects to be identified:cell_nucleus
-    Typical diameter of objects, in pixel units (Min,Max):20,70
+    Typical diameter of objects, in pixel units (Min,Max):25,70
     Discard objects outside the diameter range?:Yes
     Discard objects touching the border of the image?:Yes
     Method to distinguish clumped objects:Intensity
@@ -120,7 +120,7 @@ TrackObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:7|show
     Select object measurement to use for tracking:None
     Maximum pixel distance to consider matches:10
     Select display option:Color and Number
-    Save color-coded image?:No
+    Save color-coded image?:Yes
     Name the output image:TrackedCells
     Select the movement model:Both
     Number of standard deviations for search radius:3.0
@@ -133,9 +133,9 @@ TrackObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:7|show
     Maximum split score:50
     Maximum merge score:50
     Maximum temporal gap, in frames:5
-    Filter objects by lifetime?:No
+    Filter objects by lifetime?:Yes
     Filter using a minimum lifetime?:Yes
-    Minimum lifetime:1
+    Minimum lifetime:19
     Filter using a maximum lifetime?:No
     Maximum lifetime:100
     Mitosis alternative cost:80
@@ -145,12 +145,42 @@ TrackObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:7|show
     Cost of cell to empty matching:15.0
     Weight of area difference in function matching cost:25.0
 
-MeasureObjectSizeShape:[module_num:8|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+OverlayOutlines:[module_num:8|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Display outlines on a blank image?:No
+    Select image on which to display outlines:images
+    Name the output image:OutlineImage
+    Outline display mode:Color
+    Select method to determine brightness of outlines:Max of image
+    How to outline:Inner
+    Select outline color:Red
+    Select objects to display:cell_nucleus
+
+SaveImages:[module_num:9|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:OutlineImage
+    Select method for constructing file names:Sequential numbers
+    Select image name for file prefix:images
+    Enter file prefix:outline
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:
+    Saved file format:png
+    Output file location:Elsewhere...|/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/TMP_TESTS_outputs
+    Image bit depth:8-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:Yes
+    Create subfolders in the output folder?:Yes
+    Base image folder:Elsewhere...|/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/TMP_TESTS_outputs/overlays
+    How to save the series:T (Time)
+    Save with lossless compression?:Yes
+
+MeasureObjectSizeShape:[module_num:10|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select object sets to measure:cell_nucleus
-    Calculate the Zernike features?:Yes
+    Calculate the Zernike features?:No
     Calculate the advanced features?:No
 
-ExportToSpreadsheet:[module_num:9|svn_version:'Unknown'|variable_revision_number:13|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+ExportToSpreadsheet:[module_num:11|svn_version:'Unknown'|variable_revision_number:13|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the column delimiter:Comma (",")
     Add image metadata columns to your object data file?:No
     Add image file and folder names to your object data file?:Yes
@@ -158,7 +188,7 @@ ExportToSpreadsheet:[module_num:9|svn_version:'Unknown'|variable_revision_number
     Calculate the per-image mean values for object measurements?:No
     Calculate the per-image median values for object measurements?:No
     Calculate the per-image standard deviation values for object measurements?:No
-    Output file location:Default Input Folder sub-folder|Sources/CellProfiler_GaussianProxy_analyses/TMP_TEST_analyses
+    Output file location:Elsewhere...|/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/TMP_TESTS_outputs
     Create a GenePattern GCT file?:No
     Select source of sample row name:Metadata
     Select the image to use as the identifier:None
