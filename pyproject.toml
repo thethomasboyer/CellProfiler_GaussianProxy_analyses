@@ -10,6 +10,8 @@ dependencies = [
     "pandas>=2.0.3",
     "seaborn>=0.13.2",
     "setuptools>=75.3.0",
+    "tqdm>=4.67.1",
+    "wxpython==4.2.1",
 ]
 
 [tool.pylint]
@@ -25,3 +27,6 @@ exclude = [
     "**/.vscode/extensions",
     ".ipynb_checkpoints",
 ]
+
+[tool.ruff]
+line-length = 100

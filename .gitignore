@@ -6,9 +6,14 @@ dist/
 wheels/
 *.egg-info
 
+# VSCode
+.vscode/
+
 # Virtual environments
 .venv
 
 # Analyses
-TMP_TEST_analyses
+**/*analyses*/
 output.log
+list_biotine_files.txt
+.python-version

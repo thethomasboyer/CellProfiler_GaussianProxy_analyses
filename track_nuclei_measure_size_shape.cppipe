@@ -191,12 +191,12 @@ SaveImages:[module_num:9|svn_version:'Unknown'|variable_revision_number:16|show_
     Select the image to save:TrackedCells
     Select method for constructing file names:From image filename
     Select image name for file prefix:images
-    Enter file prefix:
+    Enter single file name:
     Number of digits:4
     Append a suffix to the image file name?:Yes
     Text to append to the image name:_tracked_cells
     Saved file format:png
-    Output file location:Default Output Folder|
+    Output file location:Default Output Folder sub-folder|tracked_cells_contours
     Image bit depth:8-bit integer
     Overwrite existing files without warning?:Yes
     When to save:Every cycle
@@ -223,12 +223,12 @@ SaveImages:[module_num:11|svn_version:'Unknown'|variable_revision_number:16|show
     Select the image to save:OutlineImage
     Select method for constructing file names:From image filename
     Select image name for file prefix:images
-    Enter file prefix:outlines
+    Enter single file name:outlines
     Number of digits:4
     Append a suffix to the image file name?:Yes
     Text to append to the image name:_outline
     Saved file format:png
-    Output file location:Default Output Folder|/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/TMP_TESTS_outputs
+    Output file location:Default Output Folder sub-folder|outlines
     Image bit depth:8-bit integer
     Overwrite existing files without warning?:Yes
     When to save:Every cycle
@@ -257,12 +257,12 @@ SaveImages:[module_num:13|svn_version:'Unknown'|variable_revision_number:16|show
     Select the image to save:TiledImage
     Select method for constructing file names:From image filename
     Select image name for file prefix:images
-    Enter file prefix:tile
+    Enter single file name:tile
     Number of digits:4
     Append a suffix to the image file name?:Yes
     Text to append to the image name:_tile
     Saved file format:png
-    Output file location:Default Output Folder|
+    Output file location:Default Output Folder sub-folder|tiles
     Image bit depth:8-bit integer
     Overwrite existing files without warning?:Yes
     When to save:Every cycle
@@ -285,7 +285,7 @@ ExportToSpreadsheet:[module_num:15|svn_version:'Unknown'|variable_revision_numbe
     Calculate the per-image mean values for object measurements?:No
     Calculate the per-image median values for object measurements?:No
     Calculate the per-image standard deviation values for object measurements?:No
-    Output file location:Default Output Folder|/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/TMP_TESTS_outputs
+    Output file location:Default Output Folder sub-folder|\g<VideoID>
     Create a GenePattern GCT file?:No
     Select source of sample row name:Metadata
     Select the image to use as the identifier:None
@@ -294,9 +294,9 @@ ExportToSpreadsheet:[module_num:15|svn_version:'Unknown'|variable_revision_numbe
     Press button to select measurements:
     Representation of Nan/Inf:NaN
     Add a prefix to file names?:No
-    Filename prefix:MyExpt_
-    Overwrite existing files without warning?:No
-    Data to export:Do not use
+    Filename prefix:
+    Overwrite existing files without warning?:Yes
+    Data to export:Image
     Combine these object measurements with those of the previous object?:No
     File name:DATA.csv
     Use the object name for the file name?:Yes
