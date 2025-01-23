@@ -155,7 +155,7 @@ IdentifySecondaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_n
     # of deviations:2.0
     Thresholding method:Minimum Cross-Entropy
 
-TrackObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+TrackObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['no lifetime filtering here so that color-coded images remain meaningful!']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Choose a tracking method:Overlap
     Select the objects to track:whole_cell
     Select object measurement to use for tracking:None
@@ -174,7 +174,7 @@ TrackObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:7|show
     Maximum split score:50
     Maximum merge score:50
     Maximum temporal gap, in frames:5
-    Filter objects by lifetime?:Yes
+    Filter objects by lifetime?:No
     Filter using a minimum lifetime?:Yes
     Minimum lifetime:19
     Filter using a maximum lifetime?:No
@@ -274,12 +274,12 @@ SaveImages:[module_num:13|svn_version:'Unknown'|variable_revision_number:16|show
 
 MeasureObjectSizeShape:[module_num:14|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select object sets to measure:FilteredNuclei, whole_cell
-    Calculate the Zernike features?:No
+    Calculate the Zernike features?:Yes
     Calculate the advanced features?:No
 
 ExportToSpreadsheet:[module_num:15|svn_version:'Unknown'|variable_revision_number:13|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the column delimiter:Comma (",")
-    Add image metadata columns to your object data file?:No
+    Add image metadata columns to your object data file?:Yes
     Add image file and folder names to your object data file?:Yes
     Select the measurements to export:No
     Calculate the per-image mean values for object measurements?:No

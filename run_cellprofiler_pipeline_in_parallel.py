@@ -1,6 +1,8 @@
 # This file runs the CellProfiler pipeline in parallel on each group of images,
 # where a group is defined by the Metadata_VideoID field in the images' metadata
-# (so groups are videos). It's a bit clunky but it actually works well.
+# (so groups are videos).
+# It's a bit clunky because each instance still reads the entire file list
+# before only running on some group, but it actually works well.
 # TODO: maybe use CellProfiler's batch mode?
 
 import shutil
@@ -48,19 +50,15 @@ def main():
     # Script args
     debug = False
     output_dir = Path(
-        "/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/analyses/biotine/"
+        "/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/analyses/biotine_full/"
     )
     num_processes = 16
-
-    # Groups to be processed in parallel (== videos!)
+    # groups to be processed in parallel (== videos!)
     all_rows = tuple(string.ascii_uppercase[0:15])  # A to O
     all_cols = (13, 14)
     all_fields = (1, 2, 3, 4)
     groups = [
-        f"{row}_{col}_fld_{field}"
-        for row in all_rows
-        for col in all_cols
-        for field in all_fields
+        f"{row}_{col}_fld_{field}" for row in all_rows for col in all_cols for field in all_fields
     ]
 
     # Confirm run
@@ -74,9 +72,7 @@ def main():
         return
 
     if output_dir.exists() and not debug:
-        erase_confirm = input(
-            f"Do you want to erase the existing outputs at {output_dir}? (y/n): "
-        )
+        erase_confirm = input(f"Do you want to erase the existing outputs at {output_dir}? (y/n): ")
         if erase_confirm.lower() == "y":
             print(f"Erasing outputs in {output_dir}")
             shutil.rmtree(output_dir)
@@ -87,8 +83,7 @@ def main():
 
     with ThreadPoolExecutor(max_workers=num_processes) as executor:
         future_to_group = {
-            executor.submit(run_pipeline, group, output_dir, debug): group
-            for group in groups
+            executor.submit(run_pipeline, group, output_dir, debug): group for group in groups
         }
         for future in tqdm(as_completed(future_to_group), total=len(groups)):
             group = future_to_group[future]
