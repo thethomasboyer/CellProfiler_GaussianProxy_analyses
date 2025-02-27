@@ -134,7 +134,7 @@ IdentifySecondaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_n
     Regularization factor:0.05
     Discard secondary objects touching the border of the image?:Yes
     Discard the associated primary objects?:Yes
-    Name the new primary objects:FilteredNuclei
+    Name the new primary objects:filtered_nucleus
     Fill holes in identified objects?:Yes
     Threshold setting version:12
     Threshold strategy:Global
@@ -157,12 +157,12 @@ IdentifySecondaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_n
 
 TrackObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['no lifetime filtering here so that color-coded images remain meaningful!']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Choose a tracking method:Overlap
-    Select the objects to track:whole_cell
+    Select the objects to track:filtered_nucleus
     Select object measurement to use for tracking:None
     Maximum pixel distance to consider matches:10
     Select display option:Color and Number
     Save color-coded image?:Yes
-    Name the output image:TrackedCells
+    Name the output image:TrackedNuclei
     Select the movement model:Both
     Number of standard deviations for search radius:3.0
     Search radius limit, in pixel units (Min,Max):2.0,10.0
@@ -188,15 +188,15 @@ TrackObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:7|show
 
 SaveImages:[module_num:9|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
-    Select the image to save:TrackedCells
+    Select the image to save:TrackedNuclei
     Select method for constructing file names:From image filename
     Select image name for file prefix:images
     Enter single file name:
     Number of digits:4
     Append a suffix to the image file name?:Yes
-    Text to append to the image name:_tracked_cells
+    Text to append to the image name:_tracked_nuclei
     Saved file format:png
-    Output file location:Default Output Folder sub-folder|tracked_cells_contours
+    Output file location:Default Output Folder sub-folder|tracked_nuclei_contours
     Image bit depth:8-bit integer
     Overwrite existing files without warning?:Yes
     When to save:Every cycle
@@ -215,10 +215,10 @@ OverlayOutlines:[module_num:10|svn_version:'Unknown'|variable_revision_number:4|
     How to outline:Inner
     Select outline color:Red
     Select objects to display:cell_nucleus
-    Select outline color:white
+    Select outline color:#EFFF0A
     Select objects to display:whole_cell
 
-SaveImages:[module_num:11|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:['this apparently saves to input folder...']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+SaveImages:[module_num:11|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:['']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
     Select the image to save:OutlineImage
     Select method for constructing file names:From image filename
@@ -250,7 +250,7 @@ Tile:[module_num:12|svn_version:'Unknown'|variable_revision_number:1|show_window
     Automatically calculate number of rows?:Yes
     Automatically calculate number of columns?:Yes
     Select an additional image to tile:OutlineImage
-    Select an additional image to tile:TrackedCells
+    Select an additional image to tile:TrackedNuclei
 
 SaveImages:[module_num:13|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
@@ -273,9 +273,9 @@ SaveImages:[module_num:13|svn_version:'Unknown'|variable_revision_number:16|show
     Save with lossless compression?:Yes
 
 MeasureObjectSizeShape:[module_num:14|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
-    Select object sets to measure:FilteredNuclei, whole_cell
+    Select object sets to measure:filtered_nucleus, whole_cell
     Calculate the Zernike features?:Yes
-    Calculate the advanced features?:No
+    Calculate the advanced features?:Yes
 
 ExportToSpreadsheet:[module_num:15|svn_version:'Unknown'|variable_revision_number:13|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the column delimiter:Comma (",")
