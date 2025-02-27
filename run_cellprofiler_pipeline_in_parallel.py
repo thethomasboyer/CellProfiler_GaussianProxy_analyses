@@ -1,7 +1,7 @@
 # This file runs the CellProfiler pipeline in parallel on each group of images,
 # where a group is defined by the Metadata_VideoID field in the images' metadata
 # (so groups are videos).
-# It's a bit clunky because each instance still reads the entire file list
+# It's a bit clunky because each instance still reads the entire file list at 'list_biotine_files.txt'
 # before only running on some group, but it actually works well.
 # TODO: maybe use CellProfiler's batch mode?
 
@@ -50,9 +50,9 @@ def main():
     # Script args
     debug = False
     output_dir = Path(
-        "/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/analyses/biotine_full/"
+        "/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/analyses/biotine_nuclei_tracked/"
     )
-    num_processes = 16
+    num_processes = 24
     # groups to be processed in parallel (== videos!)
     all_rows = tuple(string.ascii_uppercase[0:15])  # A to O
     all_cols = (13, 14)
@@ -71,6 +71,7 @@ def main():
         print("Operation cancelled.")
         return
 
+    # Create output directory
     if output_dir.exists() and not debug:
         erase_confirm = input(f"Do you want to erase the existing outputs at {output_dir}? (y/n): ")
         if erase_confirm.lower() == "y":
@@ -81,6 +82,7 @@ def main():
             return
     output_dir.mkdir(parents=True)
 
+    # Run pipeline in parallel
     with ThreadPoolExecutor(max_workers=num_processes) as executor:
         future_to_group = {
             executor.submit(run_pipeline, group, output_dir, debug): group for group in groups
