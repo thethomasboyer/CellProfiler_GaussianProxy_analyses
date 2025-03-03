@@ -107,7 +107,7 @@ ColorToGray:[module_num:6|svn_version:'Unknown'|variable_revision_number:4|show_
 IdentifyPrimaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:15|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the input image:OrigRed
     Name the primary objects to be identified:cell_nucleus
-    Typical diameter of objects, in pixel units (Min,Max):25,70
+    Typical diameter of objects, in pixel units (Min,Max):12,35
     Discard objects outside the diameter range?:Yes
     Discard objects touching the border of the image?:Yes
     Method to distinguish clumped objects:Intensity
