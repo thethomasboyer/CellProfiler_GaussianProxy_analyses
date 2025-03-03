@@ -2,7 +2,7 @@ CellProfiler Pipeline: http://www.cellprofiler.org
 Version:5
 DateRevision:428
 GitHash:
-ModuleCount:15
+ModuleCount:16
 HasImagePlaneDetails:False
 
 Images:[module_num:1|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:['To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
@@ -41,7 +41,7 @@ Metadata:[module_num:2|svn_version:'Unknown'|variable_revision_number:6|show_win
 NamesAndTypes:[module_num:3|svn_version:'Unknown'|variable_revision_number:8|show_window:False|notes:['The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Assign a name to:All images
     Select the image type:Color image
-    Name to assign these images:images
+    Name to assign these images:base_images
     Match metadata:[{'images': 'time'}]
     Image set matching method:Metadata
     Set intensity range from:Image bit-depth
@@ -64,7 +64,22 @@ Groups:[module_num:4|svn_version:'Unknown'|variable_revision_number:2|show_windo
     grouping metadata count:1
     Metadata category:VideoID
 
-ColorToGray:[module_num:5|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+Resize:[module_num:5|svn_version:'Unknown'|variable_revision_number:5|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:base_images
+    Name the output image:images
+    Resizing method:Resize by specifying desired final dimensions
+    X Resizing factor:0.25
+    Y Resizing factor:0.25
+    Z Resizing factor:0.25
+    Width (x) of the final image:1024
+    Height (y) of the final image:1024
+    # of planes (z) in the final image:1
+    Interpolation method:Bicubic
+    Method to specify the dimensions:Manual
+    Select the image with the desired dimensions:None
+    Additional image count:0
+
+ColorToGray:[module_num:6|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the input image:images
     Conversion method:Split
     Image type:RGB
@@ -89,7 +104,7 @@ ColorToGray:[module_num:5|svn_version:'Unknown'|variable_revision_number:4|show_
     Relative weight of the channel:1.0
     Image name:Channel1
 
-IdentifyPrimaryObjects:[module_num:6|svn_version:'Unknown'|variable_revision_number:15|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+IdentifyPrimaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:15|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the input image:OrigRed
     Name the primary objects to be identified:cell_nucleus
     Typical diameter of objects, in pixel units (Min,Max):25,70
@@ -125,7 +140,7 @@ IdentifyPrimaryObjects:[module_num:6|svn_version:'Unknown'|variable_revision_num
     # of deviations:2.0
     Thresholding method:Minimum Cross-Entropy
 
-IdentifySecondaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:10|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+IdentifySecondaryObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:10|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the input objects:cell_nucleus
     Name the objects to be identified:whole_cell
     Select the method to identify the secondary objects:Propagation
@@ -155,7 +170,7 @@ IdentifySecondaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_n
     # of deviations:2.0
     Thresholding method:Minimum Cross-Entropy
 
-TrackObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['no lifetime filtering here so that color-coded images remain meaningful!']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+TrackObjects:[module_num:9|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['no lifetime filtering here so that color-coded images remain meaningful!']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Choose a tracking method:Overlap
     Select the objects to track:filtered_nucleus
     Select object measurement to use for tracking:None
@@ -186,11 +201,11 @@ TrackObjects:[module_num:8|svn_version:'Unknown'|variable_revision_number:7|show
     Cost of cell to empty matching:15.0
     Weight of area difference in function matching cost:25.0
 
-SaveImages:[module_num:9|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+SaveImages:[module_num:10|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
     Select the image to save:TrackedNuclei
     Select method for constructing file names:From image filename
-    Select image name for file prefix:images
+    Select image name for file prefix:base_images
     Enter single file name:
     Number of digits:4
     Append a suffix to the image file name?:Yes
@@ -206,7 +221,7 @@ SaveImages:[module_num:9|svn_version:'Unknown'|variable_revision_number:16|show_
     How to save the series:T (Time)
     Save with lossless compression?:Yes
 
-OverlayOutlines:[module_num:10|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+OverlayOutlines:[module_num:11|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Display outlines on a blank image?:No
     Select image on which to display outlines:images
     Name the output image:OutlineImage
@@ -218,11 +233,11 @@ OverlayOutlines:[module_num:10|svn_version:'Unknown'|variable_revision_number:4|
     Select outline color:#EFFF0A
     Select objects to display:whole_cell
 
-SaveImages:[module_num:11|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:['']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+SaveImages:[module_num:12|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:['']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
     Select the image to save:OutlineImage
     Select method for constructing file names:From image filename
-    Select image name for file prefix:images
+    Select image name for file prefix:base_images
     Enter single file name:outlines
     Number of digits:4
     Append a suffix to the image file name?:Yes
@@ -238,7 +253,7 @@ SaveImages:[module_num:11|svn_version:'Unknown'|variable_revision_number:16|show
     How to save the series:T (Time)
     Save with lossless compression?:Yes
 
-Tile:[module_num:12|svn_version:'Unknown'|variable_revision_number:1|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+Tile:[module_num:13|svn_version:'Unknown'|variable_revision_number:1|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select an input image:images
     Name the output image:TiledImage
     Tile assembly method:Within cycles
@@ -252,11 +267,11 @@ Tile:[module_num:12|svn_version:'Unknown'|variable_revision_number:1|show_window
     Select an additional image to tile:OutlineImage
     Select an additional image to tile:TrackedNuclei
 
-SaveImages:[module_num:13|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+SaveImages:[module_num:14|svn_version:'Unknown'|variable_revision_number:16|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
     Select the image to save:TiledImage
     Select method for constructing file names:From image filename
-    Select image name for file prefix:images
+    Select image name for file prefix:base_images
     Enter single file name:tile
     Number of digits:4
     Append a suffix to the image file name?:Yes
@@ -272,12 +287,12 @@ SaveImages:[module_num:13|svn_version:'Unknown'|variable_revision_number:16|show
     How to save the series:T (Time)
     Save with lossless compression?:Yes
 
-MeasureObjectSizeShape:[module_num:14|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+MeasureObjectSizeShape:[module_num:15|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select object sets to measure:filtered_nucleus, whole_cell
     Calculate the Zernike features?:Yes
     Calculate the advanced features?:Yes
 
-ExportToSpreadsheet:[module_num:15|svn_version:'Unknown'|variable_revision_number:13|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+ExportToSpreadsheet:[module_num:16|svn_version:'Unknown'|variable_revision_number:13|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the column delimiter:Comma (",")
     Add image metadata columns to your object data file?:Yes
     Add image file and folder names to your object data file?:Yes
@@ -285,7 +300,7 @@ ExportToSpreadsheet:[module_num:15|svn_version:'Unknown'|variable_revision_numbe
     Calculate the per-image mean values for object measurements?:No
     Calculate the per-image median values for object measurements?:No
     Calculate the per-image standard deviation values for object measurements?:No
-    Output file location:Default Output Folder sub-folder|\g<VideoID>
+    Output file location:Default Output Folder sub-folder|measurements/\g<VideoID>
     Create a GenePattern GCT file?:No
     Select source of sample row name:Metadata
     Select the image to use as the identifier:None

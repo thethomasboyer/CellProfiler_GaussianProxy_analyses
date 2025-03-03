@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.8,<3.10"
 dependencies = [
     "cellprofiler>=4.2.8",
+    "ipympl>=0.9.3",
     "jupyter>=1.1.1",
     "pandas>=2.0.3",
     "pyarrow>=17.0.0",
