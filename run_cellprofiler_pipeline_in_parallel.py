@@ -21,7 +21,7 @@ def run_pipeline(group: str, output_dir: Path, debug: bool):
         "-c",
         "-r",
         "-p",
-        "track_nuclei_measure_size_shape.cppipe",
+        "true_biotine.cppipe",
         "-o",
         output_dir.as_posix(),
         "--file-list",
@@ -34,8 +34,8 @@ def run_pipeline(group: str, output_dir: Path, debug: bool):
         return True
     else:
         tqdm.write(f"Running command on group {group}")
-        stdout_file = output_dir / f"{group}_stdout.txt"
-        stderr_file = output_dir / f"{group}_stderr.txt"
+        stdout_file = output_dir / "outputs" / f"{group}_stdout.txt"
+        stderr_file = output_dir / "outputs" / f"{group}_stderr.txt"
         with stdout_file.open("w") as stdout, stderr_file.open("w") as stderr:
             result = subprocess.run(
                 cmd,
@@ -50,9 +50,9 @@ def main():
     # Script args
     debug = False
     output_dir = Path(
-        "/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/analyses/biotine_nuclei_tracked/"
+        "/workspaces/biocomp/tboyer/sources/CellProfiler_GaussianProxy_analyses/analyses/biotine_resized/"
     )
-    num_processes = 24
+    num_processes = 32
     # groups to be processed in parallel (== videos!)
     all_rows = tuple(string.ascii_uppercase[0:15])  # A to O
     all_cols = (13, 14)
@@ -80,7 +80,7 @@ def main():
         else:
             print("Output directory exists and will not be erased. Exiting.")
             return
-    output_dir.mkdir(parents=True)
+    (output_dir / "outputs").mkdir(parents=True)
 
     # Run pipeline in parallel
     with ThreadPoolExecutor(max_workers=num_processes) as executor:
